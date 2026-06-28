@@ -1,5 +1,6 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
+import FloatingButtons from '../ui/FloatingButtons'
 
 function Layout({ children }) {
   return (
@@ -9,6 +10,7 @@ function Layout({ children }) {
         {children}
       </main>
       <Footer />
+      <FloatingButtons />
     </div>
   )
 }
