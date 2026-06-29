@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { Ship, ArrowRight, Container, FileCheck, Globe, Package } from 'lucide-react'
+import { Ship, ArrowRight, Box, FileCheck, Globe, Package } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Layout from '../../components/layout/Layout'
 
 const FEATURES = [
-  { icon: Container, title: 'FCL & LCL Options', description: 'Full Container Load and Less than Container Load options to match your cargo volume and budget.' },
+  { icon: Box, title: 'FCL & LCL Options', description: 'Full Container Load and Less than Container Load options to match your cargo volume and budget.' },
   { icon: Globe, title: 'Major Trade Lanes', description: 'Coverage across all major global trade lanes with reliable port-to-port and door-to-door solutions.' },
   { icon: Package, title: 'Cargo Consolidation', description: 'Cost-effective consolidation and deconsolidation services for smaller shipments.' },
   { icon: FileCheck, title: 'Customs Clearance', description: 'Complete customs documentation and clearance coordination at origin and destination.' },

@@ -9,6 +9,7 @@ import AirFreight from './pages/services/AirFreight'
 import SeaFreight from './pages/services/SeaFreight'
 import NGOLogistics from './pages/services/NGOLogistics'
 import NotFound from './pages/NotFound'
+import Services from './pages/Services'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/services/sea-freight" element={<SeaFreight />} />
         <Route path="/services/ngo" element={<NGOLogistics />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
     </Router>
   )

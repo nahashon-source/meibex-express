@@ -1,53 +1,60 @@
-import { motion } from 'framer-motion'
-import { TrendingUp, Globe, Clock, ShieldCheck, Users, Handshake } from 'lucide-react'
+import { motion } from "framer-motion";
+import {
+  TrendingUp,
+  Globe,
+  Clock,
+  ShieldCheck,
+  Users,
+  Handshake,
+} from "lucide-react";
 
 const STATS = [
   {
     icon: Globe,
-    value: '50+',
-    label: 'Countries Served',
-    description: 'Global reach through trusted carrier partnerships',
+    value: "50+",
+    label: "Countries Served",
+    description: "Global reach through trusted carrier partnerships",
   },
   {
     icon: TrendingUp,
-    value: '10K+',
-    label: 'Shipments Delivered',
-    description: 'Successfully completed across all service lines',
+    value: "10K+",
+    label: "Shipments Delivered",
+    description: "Successfully completed across all service lines",
   },
   {
     icon: Clock,
-    value: '98%',
-    label: 'On-Time Delivery',
-    description: 'Consistent performance across all corridors',
+    value: "98%",
+    label: "On-Time Delivery",
+    description: "Consistent performance across all corridors",
   },
   {
     icon: Users,
-    value: '500+',
-    label: 'Active Clients',
-    description: 'Corporates, SMEs, NGOs and individual shippers',
+    value: "500+",
+    label: "Active Clients",
+    description: "Corporates, SMEs, NGOs and individual shippers",
   },
   {
     icon: ShieldCheck,
-    value: '5+',
-    label: 'Years Experience',
-    description: 'Deep East African market expertise',
+    value: "5+",
+    label: "Years Experience",
+    description: "Deep East African market expertise",
   },
   {
     icon: Handshake,
-    value: '30+',
-    label: 'Global Partners',
-    description: 'International carriers and agent network',
+    value: "30+",
+    label: "Global Partners",
+    description: "International carriers and agent network",
   },
-]
+];
 
 const TRUST_BADGES = [
-  'Customs Compliant',
-  'End-to-End Visibility',
-  'Secure Handling',
-  'Proof of Delivery',
-  'Dedicated Support',
-  'Competitive Pricing',
-]
+  "Customs Compliant",
+  "End-to-End Visibility",
+  "Secure Handling",
+  "Proof of Delivery",
+  "Dedicated Support",
+  "Competitive Pricing",
+];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -56,13 +63,12 @@ const cardVariants = {
     y: 0,
     transition: { duration: 0.4, delay: i * 0.08 },
   }),
-}
+};
 
 function Stats() {
   return (
     <section className="bg-gray-900 py-24 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -75,8 +81,7 @@ function Stats() {
             Why Meibex Express
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Numbers That{' '}
-            <span className="text-orange-500">Build Trust</span>
+            Numbers That <span className="text-orange-500">Build Trust</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Our track record speaks for itself. Every shipment is a commitment
@@ -87,7 +92,7 @@ function Stats() {
         {/* Stats Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
           {STATS.map((stat, i) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
@@ -115,7 +120,7 @@ function Stats() {
                   </div>
                 </div>
               </motion.div>
-            )
+            );
           })}
         </div>
 
@@ -127,8 +132,8 @@ function Stats() {
           transition={{ duration: 0.5 }}
           className="bg-gradient-to-r from-orange-500/10 via-orange-500/5 to-transparent border border-orange-500/20 rounded-2xl p-8"
         >
-          <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <div className="flex-shrink-0">
+          <div className="flex flex-col gap-6">
+            <div>
               <h3 className="text-white font-bold text-lg mb-1">
                 Our Commitment to You
               </h3>
@@ -136,8 +141,6 @@ function Stats() {
                 Every shipment. Every time.
               </p>
             </div>
-
-            <div className="w-px h-12 bg-white/10 hidden lg:block" />
 
             <div className="flex flex-wrap gap-3">
               {TRUST_BADGES.map((badge) => (
@@ -152,10 +155,9 @@ function Stats() {
             </div>
           </div>
         </motion.div>
-
       </div>
     </section>
-  )
+  );
 }
 
-export default Stats
+export default Stats;
