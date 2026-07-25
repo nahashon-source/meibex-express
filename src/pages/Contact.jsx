@@ -1,97 +1,119 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Clock, ArrowRight, Send } from 'lucide-react'
-import Layout from '../components/layout/Layout'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  ArrowRight,
+  Send,
+  Calculator,
+} from "lucide-react";
+import Layout from "../components/layout/Layout";
+import ExportQuoteCalculator from "../components/ExportQuoteCalculator";
 
 const CONTACT_INFO = [
   {
     icon: Mail,
-    label: 'Email Us',
-    value: 'info@meibexexpress.com',
-    href: 'mailto:info@meibexexpress.com',
+    label: "Email Us",
+    value: "info@meibexexpress.com",
+    href: "mailto:info@meibexexpress.com",
   },
   {
     icon: Phone,
-    label: 'Call Us',
-    value: '+254 700 000 000',
-    href: 'tel:+254700000000',
+    label: "Call Us",
+    value: "+254 700 000 000",
+    href: "tel:+254700000000",
   },
   {
     icon: MapPin,
-    label: 'Visit Us',
-    value: 'Westlands, Nairobi, Kenya',
+    label: "Visit Us",
+    value: "Westlands, Nairobi, Kenya",
     href: null,
   },
   {
     icon: Clock,
-    label: 'Working Hours',
-    value: 'Mon - Fri: 8:00 AM - 5:00 PM',
+    label: "Working Hours",
+    value: "Mon - Fri: 8:00 AM - 5:00 PM",
     href: null,
   },
-]
+];
 
 const SERVICE_OPTIONS = [
-  'International Express Courier',
-  'Air Freight',
-  'Sea Freight',
-  'NGO & Humanitarian Logistics',
-  'Other',
-]
+  "International Express Courier",
+  "Air Freight",
+  "Sea Freight",
+  "NGO & Humanitarian Logistics",
+  "Other",
+];
 
 const INITIAL_FORM = {
-  fullName: '',
-  email: '',
-  phone: '',
-  company: '',
-  service: '',
-  origin: '',
-  destination: '',
-  cargoDescription: '',
-  weight: '',
-  timeline: '',
-  message: '',
-}
+  fullName: "",
+  email: "",
+  phone: "",
+  company: "",
+  service: "",
+  origin: "",
+  destination: "",
+  cargoDescription: "",
+  weight: "",
+  timeline: "",
+  message: "",
+};
 
 function Contact() {
-  const [form, setForm] = useState(INITIAL_FORM)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState(null)
+  const [form, setForm] = useState(INITIAL_FORM);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const validateForm = () => {
-    if (!form.fullName.trim()) return 'Full name is required.'
-    if (!form.email.trim()) return 'Email is required.'
-    if (!/^[^@]+@[^@]+\.[^@]+$/.test(form.email)) return 'Enter a valid email.'
-    if (!form.service) return 'Please select a service.'
-    if (!form.origin.trim()) return 'Origin is required.'
-    if (!form.destination.trim()) return 'Destination is required.'
-    return null
-  }
+    if (!form.fullName.trim()) return "Full name is required.";
+    if (!form.email.trim()) return "Email is required.";
+    if (!/^[^@]+@[^@]+\.[^@]+$/.test(form.email)) return "Enter a valid email.";
+    if (!form.service) return "Please select a service.";
+    if (!form.origin.trim()) return "Origin is required.";
+    if (!form.destination.trim()) return "Destination is required.";
+    return null;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError(null)
+    e.preventDefault();
+    setError(null);
 
-    const validationError = validateForm()
+    const validationError = validateForm();
     if (validationError) {
-      setError(validationError)
-      return
+      setError(validationError);
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     // Simulate API call — replace with real endpoint later
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setForm(INITIAL_FORM)
-  }
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setForm(INITIAL_FORM);
+  };
+
+  // Prefills the full form from the quick calculator and scrolls it into view
+  const handleUseFullForm = ({ country }) => {
+    setForm((prev) => ({
+      ...prev,
+      service: "International Express Courier",
+      destination: country || prev.destination,
+    }));
+    document
+      .getElementById("quote-form")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <Layout>
@@ -107,13 +129,19 @@ function Contact() {
               Get in Touch
             </span>
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Request a{' '}
-              <span className="text-orange-500">Shipment Quote</span>
+              Request a <span className="text-orange-500">Shipment Quote</span>
             </h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-6">
               Share your cargo details and our logistics experts will respond
               promptly with a tailored solution.
             </p>
+            <button
+              onClick={() => setIsCalculatorOpen(true)}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/10 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200"
+            >
+              <Calculator size={16} className="text-orange-400" />
+              Get Export Quote (Instant Estimate)
+            </button>
           </motion.div>
         </div>
       </section>
@@ -122,7 +150,6 @@ function Contact() {
       <section className="bg-gray-950 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
-
             {/* Left — Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -135,8 +162,8 @@ function Contact() {
                   Contact Information
                 </h2>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Reach out directly or fill in the quote form and we will
-                  get back to you within one business day.
+                  Reach out directly or fill in the quote form and we will get
+                  back to you within one business day.
                 </p>
               </div>
 
@@ -159,7 +186,9 @@ function Contact() {
                           {value}
                         </a>
                       ) : (
-                        <p className="text-white text-sm font-medium">{value}</p>
+                        <p className="text-white text-sm font-medium">
+                          {value}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -180,6 +209,7 @@ function Contact() {
 
             {/* Right — Quote Form */}
             <motion.div
+              id="quote-form"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -199,8 +229,8 @@ function Contact() {
                       Quote Request Sent!
                     </h3>
                     <p className="text-gray-400 text-sm max-w-sm">
-                      Thank you. Our logistics team will review your request
-                      and respond within one business day.
+                      Thank you. Our logistics team will review your request and
+                      respond within one business day.
                     </p>
                     <button
                       onClick={() => setIsSubmitted(false)}
@@ -211,7 +241,6 @@ function Contact() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-
                     {/* Error */}
                     {error && (
                       <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm px-4 py-3 rounded-lg">
@@ -236,7 +265,8 @@ function Contact() {
                       </div>
                       <div>
                         <label className="text-gray-400 text-xs font-medium mb-1.5 block">
-                          Email Address <span className="text-orange-500">*</span>
+                          Email Address{" "}
+                          <span className="text-orange-500">*</span>
                         </label>
                         <input
                           type="email"
@@ -282,7 +312,8 @@ function Contact() {
                     {/* Service */}
                     <div>
                       <label className="text-gray-400 text-xs font-medium mb-1.5 block">
-                        Service Required <span className="text-orange-500">*</span>
+                        Service Required{" "}
+                        <span className="text-orange-500">*</span>
                       </label>
                       <select
                         name="service"
@@ -290,9 +321,13 @@ function Contact() {
                         onChange={handleChange}
                         className="w-full bg-gray-900 border border-white/10 focus:border-orange-500/50 text-white text-sm rounded-lg px-4 py-3 outline-none transition-colors"
                       >
-                        <option value="" disabled>Select a service</option>
+                        <option value="" disabled>
+                          Select a service
+                        </option>
                         {SERVICE_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -405,17 +440,21 @@ function Contact() {
                         </>
                       )}
                     </button>
-
                   </form>
                 )}
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>
+
+      <ExportQuoteCalculator
+        isOpen={isCalculatorOpen}
+        onClose={() => setIsCalculatorOpen(false)}
+        onUseFullForm={handleUseFullForm}
+      />
     </Layout>
-  )
+  );
 }
 
-export default Contact
+export default Contact;
