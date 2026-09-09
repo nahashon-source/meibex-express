@@ -1,1 +1,88 @@
 @import "tailwindcss";
+
+/* Shared light theme overrides for the existing utility palette. */
+body {
+	background: #f8fafc;
+	color: #1f2937;
+}
+
+.bg-gray-950 {
+	background-color: #f8fafc !important;
+}
+
+.bg-gray-950\/90 {
+	background-color: rgba(248, 250, 252, 0.92) !important;
+}
+
+.bg-gray-900 {
+	background-color: #eef2f6 !important;
+}
+
+.bg-white\/5 {
+	background-color: rgba(255, 255, 255, 0.84) !important;
+}
+
+.bg-white\/10 {
+	background-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.bg-white\/20 {
+	background-color: rgba(255, 255, 255, 0.84) !important;
+}
+
+.bg-white\/30 {
+	background-color: rgba(255, 255, 255, 0.96) !important;
+}
+
+.border-white\/5 {
+	border-color: #e2e8f0 !important;
+}
+
+.border-white\/10,
+.border-white\/20 {
+	border-color: #cbd5e1 !important;
+}
+
+.text-gray-300 {
+	color: #475569 !important;
+}
+
+.text-gray-400 {
+	color: #64748b !important;
+}
+
+.text-gray-500 {
+	color: #64748b !important;
+}
+
+.text-white {
+	color: #1f2937 !important;
+}
+
+.bg-orange-500.text-white,
+.bg-green-500.text-white,
+.bg-red-500.text-white {
+	color: #ffffff !important;
+}
+
+.placeholder-gray-600::placeholder {
+	color: #94a3b8 !important;
+}
+
+.from-gray-950 {
+	--tw-gradient-from: #f8fafc var(--tw-gradient-from-position) !important;
+	--tw-gradient-to: rgb(248 250 252 / 0) var(--tw-gradient-to-position) !important;
+}
+
+.via-gray-900 {
+	--tw-gradient-to: rgb(238 242 246 / 0) var(--tw-gradient-to-position) !important;
+	--tw-gradient-stops: var(--tw-gradient-from), #eef2f6 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+.to-orange-950\/20 {
+	--tw-gradient-to: rgb(255 247 237 / 0.8) var(--tw-gradient-to-position) !important;
+}
+
+.shadow-black\/40 {
+	--tw-shadow-color: rgb(15 23 42 / 0.12) !important;
+}

@@ -1,25 +1,24 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp, MessageCircle } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUp, MessageCircle } from "lucide-react";
 
 function FloatingButtons() {
-  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-
       {/* Scroll to Top */}
       <AnimatePresence>
         {showScrollTop && (
@@ -39,7 +38,7 @@ function FloatingButtons() {
 
       {/* WhatsApp Button */}
       <motion.a
-        href="https://wa.me/254700000000?text=Hello%20Meibex%20Express%2C%20I%20would%20like%20to%20request%20a%20shipment%20quote."
+        href="https://wa.me/254757878352?text=Hello%20Meibex%20Express%2C%20I%20would%20like%20to%20request%20a%20shipment%20quote."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -51,9 +50,8 @@ function FloatingButtons() {
         <MessageCircle size={18} />
         <span className="hidden sm:inline">Chat on WhatsApp</span>
       </motion.a>
-
     </div>
-  )
+  );
 }
 
-export default FloatingButtons
+export default FloatingButtons;

@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
-import { ArrowRight, Phone, Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
+import { ArrowRight, Phone, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function CTA() {
   return (
@@ -14,18 +14,18 @@ function CTA() {
           className="relative bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-10 sm:p-16 overflow-hidden"
         >
           {/* Background decoration */}
-          <div className="absolute inset-0 opacity-10"
+          <div
+            className="absolute inset-0 opacity-10"
             style={{
               backgroundImage: `linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
                                 linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)`,
-              backgroundSize: '40px 40px',
+              backgroundSize: "40px 40px",
             }}
           />
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-orange-800/30 rounded-full blur-3xl" />
 
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-10">
-
             {/* Left Content */}
             <div className="max-w-xl">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -40,7 +40,7 @@ function CTA() {
               {/* Contact Options */}
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="tel:+254700000000"
+                  href="tel:+254757878352"
                   className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors duration-200"
                 >
                   <Phone size={15} />
@@ -71,12 +71,11 @@ function CTA() {
                 View Services
               </Link>
             </div>
-
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
-export default CTA
+export default CTA;

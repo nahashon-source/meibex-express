@@ -26,13 +26,7 @@ const COMPANY_LINKS = [
   { label: "Terms & Conditions", path: "/terms" },
 ];
 
-const COVERAGE_LINKS = [
-  "Kenya",
-  "Uganda",
-  "Tanzania",
-  "Rwanda",
-  "Burundi",
-];
+const COVERAGE_LINKS = ["Kenya", "Uganda", "Tanzania", "Rwanda", "Burundi"];
 
 const SOCIAL_LINKS = [
   {
@@ -83,11 +77,11 @@ function Footer() {
               </a>
 
               <a
-                href="tel:+254700000000"
+                href="tel:+254757878352"
                 className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-400 text-sm transition-colors"
               >
                 <Phone size={14} className="text-orange-500" />
-                +254 700 000 000
+                0757 878 352
               </a>
 
               <div className="inline-flex items-start gap-2 text-gray-400 text-sm">

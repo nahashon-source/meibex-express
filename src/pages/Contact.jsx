@@ -22,8 +22,8 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     label: "Call Us",
-    value: "+254 700 000 000",
-    href: "tel:+254700000000",
+    value: "0757 878 352",
+    href: "tel:+254757878352",
   },
   {
     icon: MapPin,
@@ -197,7 +197,7 @@ function Contact() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/254700000000"
+                href="https://wa.me/254757878352"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200"
@@ -290,7 +290,7 @@ function Contact() {
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
-                          placeholder="+254 700 000 000"
+                          placeholder="0757 878 352"
                           className="w-full bg-white/5 border border-white/10 focus:border-orange-500/50 text-white text-sm rounded-lg px-4 py-3 outline-none transition-colors placeholder-gray-600"
                         />
                       </div>
