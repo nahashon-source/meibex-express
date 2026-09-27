@@ -16,8 +16,8 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     label: "Email Us",
-    value: "info@meibexexpress.com",
-    href: "mailto:info@meibexexpress.com",
+    value: "sales@meibexexpress.com",
+    href: "mailto:sales@meibexexpress.com",
   },
   {
     icon: Phone,
