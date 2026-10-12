@@ -16,8 +16,8 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     label: "Email Us",
-    value: "info@meibexexpress.com",
-    href: "mailto:info@meibexexpress.com",
+    value: "meibexsales@meibexexpress.com",
+    href: "mailto:meibexsales@meibexexpress.com",
   },
   {
     icon: Phone,
@@ -47,6 +47,10 @@ const SERVICE_OPTIONS = [
   "Other",
 ];
 
+const CONTACT_ENDPOINT = `${import.meta.env.VITE_API_URL ?? ""}/api/contact`;
+const FALLBACK_MESSAGE =
+  "We could not send your request. Please try again, or email meibexsales@meibexexpress.com / WhatsApp us directly.";
+
 const INITIAL_FORM = {
   fullName: "",
   email: "",
@@ -59,6 +63,7 @@ const INITIAL_FORM = {
   weight: "",
   timeline: "",
   message: "",
+  website: "", // honeypot: real users never see or fill this
 };
 
 function Contact() {
@@ -95,12 +100,27 @@ function Contact() {
 
     setIsSubmitting(true);
 
-    // Simulate API call — replace with real endpoint later
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = await response.json().catch(() => null);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setForm(INITIAL_FORM);
+      if (!response.ok || !result?.success) {
+        setError(result?.message || FALLBACK_MESSAGE);
+        return;
+      }
+
+      setIsSubmitted(true);
+      setForm(INITIAL_FORM);
+    } catch (err) {
+      console.error("Quote request failed:", err);
+      setError(FALLBACK_MESSAGE);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Prefills the full form from the quick calculator and scrolls it into view
@@ -247,6 +267,18 @@ function Contact() {
                         {error}
                       </div>
                     )}
+
+                    {/* Honeypot (hidden from users and screen readers) */}
+                    <input
+                      type="text"
+                      name="website"
+                      value={form.website}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="hidden"
+                    />
 
                     {/* Row 1 */}
                     <div className="grid sm:grid-cols-2 gap-5">

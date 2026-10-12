@@ -47,7 +47,7 @@ function CTA() {
                   Call Us
                 </a>
                 <a
-                  href="mailto:info@meibexexpress.com"
+                  href="mailto:meibexsales@meibexexpress.com"
                   className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors duration-200"
                 >
                   <Mail size={15} />

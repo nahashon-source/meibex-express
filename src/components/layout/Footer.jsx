@@ -41,7 +41,7 @@ const SOCIAL_LINKS = [
   },
   {
     icon: Mail,
-    href: "mailto:info@meibexexpress.com",
+    href: "mailto:meibexsales@meibexexpress.com",
     label: "Email",
   },
 ];
@@ -69,11 +69,11 @@ function Footer() {
 
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:info@meibexexpress.com"
+                href="mailto:meibexsales@meibexexpress.com"
                 className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-400 text-sm transition-colors"
               >
                 <Mail size={14} className="text-orange-500" />
-                info@meibexexpress.com
+                meibexsales@meibexexpress.com
               </a>
 
               <a
