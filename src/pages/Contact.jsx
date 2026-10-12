@@ -13,12 +13,14 @@ import Layout from "../components/layout/Layout";
 import ExportQuoteCalculator from "../components/ExportQuoteCalculator";
 
 const CONTACT_INFO = [
-  {
-    icon: Mail,
-    label: "Email Us",
-    value: "meibexsales@meibexexpress.com",
-    href: "mailto:meibexsales@meibexexpress.com",
-  },
+
+{
+  icon: Mail,
+  label: "Email Us",
+  value: "meibexsales@meibexexpress.com",
+  href: "mailto:meibexsales@meibexexpress.com",
+},
+
   {
     icon: Phone,
     label: "Call Us",
