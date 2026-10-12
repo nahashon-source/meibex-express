@@ -72,6 +72,29 @@ const buildEmailBody = (fields) => {
   return { text, html };
 };
 
+const buildConfirmationBody = (fields) => {
+  const summary = `${fields.service}: ${fields.origin} to ${fields.destination}`;
+  const text = [
+    `Hello ${fields.fullName},`,
+    "",
+    "Thank you for contacting Meibex Express. We have received your quote request and our logistics team will respond within one business day.",
+    "",
+    `Your request: ${summary}`,
+    "",
+    "If anything is urgent, reply to this email or contact us on WhatsApp.",
+    "",
+    "Meibex Express",
+  ].join("\n");
+  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.5">
+<p>Hello ${escapeHtml(fields.fullName)},</p>
+<p>Thank you for contacting Meibex Express. We have received your quote request and our logistics team will respond within one business day.</p>
+<p><strong>Your request:</strong> ${escapeHtml(summary)}</p>
+<p>If anything is urgent, reply to this email or contact us on WhatsApp.</p>
+<p>Meibex Express</p></div>`;
+
+  return { text, html };
+};
+
 const createTransport = () =>
   nodemailer.createTransport({
     host: process.env.ZOHO_SMTP_HOST || "smtp.zoho.com",
@@ -139,8 +162,10 @@ export default async function handler(req, res) {
     destination: fields.destination,
   });
 
+  const transporter = createTransport();
+
   try {
-    await createTransport().sendMail({
+    await transporter.sendMail({
       from: `"Meibex Website" <${process.env.ZOHO_SMTP_USER}>`,
       to: recipient,
       replyTo: `"${fields.fullName.replace(/"/g, "")}" <${fields.email}>`,
@@ -148,7 +173,6 @@ export default async function handler(req, res) {
       text,
       html,
     });
-    return reply(res, 200, true, "Quote request sent.");
   } catch (error) {
     console.error("[contact] SMTP send failed:", error);
     return reply(
@@ -158,4 +182,21 @@ export default async function handler(req, res) {
       "We could not send your request. Please try again shortly.",
     );
   }
+
+  // The sales team already has the request at this point, so a failed
+  // confirmation must not turn the customer's submission into an error.
+  try {
+    const confirmation = buildConfirmationBody(fields);
+    await transporter.sendMail({
+      from: `"Meibex Express" <${process.env.ZOHO_SMTP_USER}>`,
+      to: fields.email,
+      subject: "We received your quote request - Meibex Express",
+      text: confirmation.text,
+      html: confirmation.html,
+    });
+  } catch (error) {
+    console.error("[contact] Customer confirmation failed:", error);
+  }
+
+  return reply(res, 200, true, "Quote request sent.");
 }
